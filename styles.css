@@ -1,0 +1,239 @@
+/* ---------- Base / layout ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --card-bg: #ffffff;
+  --text: #1f2933;
+  --muted: #8a94a6;
+  --accent: #6366f1;
+  --accent-dark: #4f46e5;
+  --danger: #ef4444;
+  --border: #e5e7eb;
+  --done: #9ca3af;
+  --radius: 16px;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  color: var(--text);
+  background: linear-gradient(160deg, #a78bfa 0%, #6366f1 100%);
+}
+
+/* ---------- Card ---------- */
+.card {
+  width: 100%;
+  max-width: 540px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 1.75rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Add form ---------- */
+.add {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.add__input {
+  flex: 1;
+  padding: 0.75rem 0.95rem;
+  font-size: 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.add__input:focus {
+  border-color: var(--accent);
+}
+
+.add__btn {
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.add__btn:hover {
+  background: var(--accent-dark);
+}
+
+.add__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- Status / summary / loading / empty ---------- */
+.status {
+  min-height: 1.1rem;
+  font-size: 0.9rem;
+  color: var(--danger);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.summary {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 1.5rem 0;
+}
+
+/* ---------- Filter tabs ---------- */
+.filters {
+  display: flex;
+  gap: 0.4rem;
+  background: #f1f1f6;
+  border-radius: 12px;
+  padding: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.filter {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.filter:hover {
+  color: var(--text);
+}
+
+.filter--active {
+  background: #fff;
+  color: var(--accent-dark);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filter__count {
+  font-size: 0.75rem;
+  min-width: 1.4rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--accent-dark);
+}
+
+.filter--active .filter__count {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Task list ---------- */
+.tasks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.task__checkbox {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+.task__title {
+  flex: 1;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* Completed task styling */
+.task--done .task__title {
+  text-decoration: line-through;
+  color: var(--done);
+}
+
+.task__btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.task__btn--edit {
+  color: var(--accent-dark);
+}
+
+.task__btn--edit:hover {
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.task__btn--delete {
+  color: var(--danger);
+}
+
+.task__btn--delete:hover {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 420px) {
+  .card {
+    padding: 1.5rem 1.25rem;
+  }
+  .task__btn {
+    padding: 0.3rem 0.45rem;
+  }
+}

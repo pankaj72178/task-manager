@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="card">
+    <h1 class="title">Task Manager</h1>
+
+    <!-- CREATE: input + Add button -->
+    <form class="add" id="add-form" autocomplete="off">
+      <input
+        type="text"
+        id="task-input"
+        class="add__input"
+        placeholder="What needs to be done?"
+        aria-label="New task title"
+      />
+      <button type="submit" class="add__btn" id="add-btn">Add</button>
+    </form>
+
+    <!-- Status line for errors / inline messages -->
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+    <!-- Count summary -->
+    <p class="summary" id="summary"></p>
+
+    <!-- Filter tabs: All / Pending / Completed -->
+    <div class="filters" id="filters" role="tablist">
+      <button class="filter filter--active" data-filter="all" type="button">
+        All <span class="filter__count" id="count-all">0</span>
+      </button>
+      <button class="filter" data-filter="pending" type="button">
+        Pending <span class="filter__count" id="count-pending">0</span>
+      </button>
+      <button class="filter" data-filter="completed" type="button">
+        Completed <span class="filter__count" id="count-completed">0</span>
+      </button>
+    </div>
+
+    <!-- Loading state for the initial read -->
+    <p class="loading" id="loading">Loading tasks…</p>
+
+    <!-- Empty state -->
+    <p class="empty" id="empty" hidden>No tasks yet. Add your first one above!</p>
+
+    <!-- READ: task list (populated live by onSnapshot) -->
+    <ul class="tasks" id="task-list"></ul>
+  </main>
+
+  <!-- Modular SDK requires type="module" -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
